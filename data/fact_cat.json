@@ -1,0 +1,33 @@
+{
+    "complex_claim": [
+        "multiple_facts_combination",
+        "reasoning_with_structural_table_data",
+        "facts_change_over_time",
+        "subtle_factual_differences",
+        "adversarial_examples_in_factuality",
+        "internet_spread_and_journalistic_verification",
+        "domain-specific_claims",
+        "multilingual_claims",
+        "complex_claims_with_multi-step_reasoning"
+    ],
+    "fake_news": [
+        "satire_or_parody_news",
+        "news_content_with_mismatched_headline_or_caption",
+        "misleading_use_of_information",
+        "genuine_content_mixed_with_false_context",
+        "impersonated_genuine_source",
+        "camouflaged_with_the_style_of_reliable_news_publishers",
+        "manipulated_content",
+        "fabricated_content",
+        "real_news"
+    ],
+    "social_rumor": [
+        "wish_rumor",
+        "dread_rumor",
+        "wedge_driving_rumor",
+        "temporal_dynamics_rumor",
+        "urban_legend_rumor",
+        "anticipatory_rumor",
+        "none_rumor"
+    ]
+}
