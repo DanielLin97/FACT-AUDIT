@@ -4,4 +4,4 @@ The source code and data for peer review: [An Adaptive Multi-Agent Framework for
 
 This novel work provides a fresh perspective from dynamic fact-checking evaluation to audit the capacities of LLMs adaptively.
 
-Coming soon! Stay tuned.
+More information coming soon! Stay tuned.
