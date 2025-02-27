@@ -1,6 +1,6 @@
 # FACT-AUDIT
 
-The source code for peer review: [An Adaptive Multi-Agent Framework for Dynamic Fact-Checking Evaluation of Large Language Models]
+The source code for the work: [An Adaptive Multi-Agent Framework for Dynamic Fact-Checking Evaluation of Large Language Models]
 
 This work provides a fresh perspective from dynamic fact-checking evaluation to audit the capacities of LLMs adaptively.
 
