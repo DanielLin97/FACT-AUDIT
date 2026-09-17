@@ -42,7 +42,7 @@ def gpt4o_turbo_generate(text, temp=None, presence_penalty=None):
     messages = [{"role": "user", "content": text}]
     while num > 0 and len(res)==0:
         try:
-            if temp:
+            if temp is not None:
                 data = json.dumps({"model": "gpt-4o-2024-05-13", "messages": 
                     [{"role": "user", "content": text}],
                     'temperature': temp
@@ -68,7 +68,7 @@ def gpt4omini_turbo_generate(text, temp=None, presence_penalty=None):
     messages = [{"role": "user", "content": text}]
     while num > 0 and len(res)==0:
         try:
-            if temp:
+            if temp is not None:
                 data = json.dumps({"model": "gpt-4o-mini-2024-07-18", "messages": 
                     [{"role": "user", "content": text}],
                     'temperature': temp
@@ -112,7 +112,7 @@ def find_dict(answer):
             data = fix_json_string(json_string)
             data = json.loads(data)
     else:
-        print("No JSON data found")
+        raise ValueError("No JSON data found")
     return data
 
 
@@ -122,7 +122,7 @@ def gpt4o_generate(text, temp=1.0):  # model   gpt-4
     res = ""
     while num > 0 and len(res)==0:
         try:
-            if temp:
+            if temp is not None:
                 data = json.dumps({"model": "gpt-4o-2024-05-13", "messages": 
                     [{"role": "user", "content": text}],
                     'temperature': temp
@@ -201,7 +201,7 @@ def deep_search(task_name, seed_prompts):  #knowledge point, seed questions for 
         ref_ans = optimize_func(gen_vote_template(i['prompt'], ref_ans1, ref_ans2, ref_ans3), temp=0)
         while True:
             try:
-                ref_ans = judge_ref_answer(question_prompt, key_point, ref_ans)
+                ref_ans = judge_ref_answer(question_prompt, i['key_point'], ref_ans)
                 break
             except:
                 continue
@@ -218,6 +218,8 @@ def deep_search(task_name, seed_prompts):  #knowledge point, seed questions for 
                 break
             except Exception as e:
                 print(e)
+        else:
+            raise RuntimeError("Failed to score the seed prompt after 3 attempts")
 
         seed_prompts[idx]['score'] = i['score']
         seed_prompts[idx]['comparison'] = i['comparison']
@@ -314,7 +316,7 @@ Please generate a new test case. Output in a json format: {"key_point": string(.
             ref_ans1 = optimize_func(question_prompt, temp=0)
             ref_ans2 = optimize_func(question_prompt, temp=0)
             ref_ans3 = optimize_func(question_prompt, temp=0)
-            ref_ans = optimize_func(gen_vote_template(i['prompt'], ref_ans1, ref_ans2, ref_ans3), temp=0)
+            ref_ans = optimize_func(gen_vote_template(new_prompt, ref_ans1, ref_ans2, ref_ans3), temp=0)
             while True:
                 try:
                     ref_ans = judge_ref_answer(question_prompt, key_point, ref_ans)
@@ -479,6 +481,7 @@ If the answer is correct and reasonable, please ONLY output the original answer 
         return judge_res
     except Exception as e:
         print(e)
+        raise
 
 def verify_sentence(sentence):
     url = "https://en.wikipedia.org/w/api.php"
